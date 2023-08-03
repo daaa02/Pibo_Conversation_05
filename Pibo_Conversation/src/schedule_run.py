@@ -53,10 +53,10 @@ class RunSchedule():
         ## 고정된 스케줄로 진행(~3일차)
                 
         # 최초 실행시 자기소개 시나리오 실행
-        if self.completion == 0:
+        if self.completion == 1:
             self.act = f'Pibo_Conversation/src/greeting.py'
         
-        if 1 <= self.completion <= 8:
+        if 2 <= self.completion <= 9:
             fix = {1:'Pibo_Conversation/src/Fairytale/19_shepherd.py', 2:'Pibo_Conversation/src/Roleplay/02_strong.py',
                    3:'Pibo_Conversation/src/Solution/01_badword.py', 4:'Pibo_Play/src/Com/com_4.py', 5:'Pibo_Play/src/Soc/soc_6.py',
                    6:'Pibo_Conversation/src/Etiquette/03_cough.py', 7:'Pibo_Play/src/Cog/cog_1.py', 8:'Pibo_Play/src/Mus/mus_11.py'}   
@@ -65,7 +65,7 @@ class RunSchedule():
         
         ## 선호도 계산해서 활동 스케줄 결정(4일차~)
         
-        if 9 <= self.completion <= 10 or self.completion >= 12:
+        if 10 <= self.completion <= 11 or self.completion >= 13:
             for i in range(0, len(data2)):
                 for j in range(0, 4):
                     data2[i][j] = float(data2[i][j])    # 점수 값이 string 형태로 들어있어서 flaot로 변환
@@ -120,7 +120,7 @@ class RunSchedule():
                     self.act = f'Pibo_Conversation/src/Roleplay/{rand}.py'
         
         # 마지막 활동은 헤어짐 시나리오 실행 
-        if self.completion == 11:
+        if self.completion == 12:
             self.act = f'Pibo_Conversation/src/goodbye.py'           
         
         try:
@@ -141,7 +141,7 @@ class RunSchedule():
                 print(e)
             
             # 더 하고 싶다고 하면 여기서부터
-            if self.completion >= 12:
+            if self.completion >= 13:
                 pass
             
             else:
