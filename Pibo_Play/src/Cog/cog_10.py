@@ -52,9 +52,12 @@ class Cog():
         pibo = cm.tts(bhv="do_suggestion_S", string=f"강 건너기 놀이를 해보자!")
         time.sleep(1)
         pibo = cm.tts(bhv="do_explain_A", string=f"이번 놀이는 책이 필요해! 징검다리를 만들 수 있게 5개 보다 많이 준비하면 돼! 준비가 되면 준비 됐다고 말해줘.")
+        cwc.writerow(['pibo', pibo])
         
         while True:
             answer = cm.responses_proc(re_bhv="do_waiting_A", re_q=f"준비가 되면 준비 됐다고 말해줘~")
+            cwc.writerow(['user', answer[0][1], answer[1]])
+            self.reject.append(answer[1])
             
             if answer[0][0] == "done" or answer[0][0] == "yes" or answer[0][0] == "next":
                 pibo = cm.tts(bhv="do_joy_A", string=f"좋았어. 놀이 방법을 알려줄께!")
@@ -121,14 +124,16 @@ class Cog():
             
             if answer[0][0] == "done" or answer[0][0] == "yes" or answer[0][0] == "next":
                 pibo = cm.tts(bhv="do_compliment_L", string=f"집중력이 정말 대단한걸? 징검다리 돌이 몇 개 였어?")
-                answer = cm.responses_proc(re_bhv="do_explain_A", re_q=f"돌이 몇 개 였어?")
                 cwc.writerow(['pibo', pibo]) 
+                
+                answer = cm.responses_proc(re_bhv="do_explain_A", re_q=f"돌이 몇 개 였어?")                
                 cwc.writerow(['user', answer[0][1], answer[1]])
                 self.reject.append(answer[1])
                 
                 pibo = cm.tts(bhv="do_compliment_S", string=f"그랬구나~ 정말 잘했어! ")
                 time.sleep(1)
                 pibo = cm.tts(bhv="do_suggestion_L", string=f"이제 뒤로 돌아서 다시 징검다리를 건너보자. 이번엔 하나씩 뛸 때마다 거꾸로 숫자를 세어보는 거야. 도착하면 도착했어 라고 알려줘.")
+                cwc.writerow(['pibo', pibo]) 
                 break
             else:
                 continue
@@ -169,8 +174,8 @@ class Cog():
         behavior.do_stamp()
         time.sleep(1)
         
-        pibo = cm.tts(bhv="do_suggestion_S", string=f"사진을 찍어 줄게! 컵받침을 들고 포즈를 취해봐!")        
-        behavior.do_photo()
+        # pibo = cm.tts(bhv="do_suggestion_S", string=f"사진을 찍어 줄게! 컵받침을 들고 포즈를 취해봐!")        
+        # behavior.do_photo()
         
         
         # 3. 피드백 수집
