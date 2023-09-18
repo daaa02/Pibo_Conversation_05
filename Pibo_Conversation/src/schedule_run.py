@@ -119,6 +119,9 @@ class RunSchedule():
         #             rand = random.choice(['03_tiny', '04_flying'])
         #             self.act = f'Pibo_Conversation/src/Roleplay/{rand}.py'
         
+        if self.completion == 9:
+            self.act = f'Pibo_Conversation/src/Solution/03_night.py'
+            
         if self.completion == 10:
             self.act = f'Pibo_Play/src/Cog/cog_10.py'
             
