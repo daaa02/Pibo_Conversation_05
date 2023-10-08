@@ -141,7 +141,7 @@ class RunSchedule():
                 print(e)
             
             # 더 하고 싶다고 하면 여기서부터
-            if self.completion >= 13:
+            if self.completion >= 30:
                 pass
             
             else:
